@@ -1,0 +1,161 @@
+<Chat>:
+    name: 'chat'
+
+    MDGridLayout:
+        cols: 1
+        md_bg_color: app.bg_color
+
+        MDGridLayout:
+            md_bg_color: [1-x for x in app.bg_color[:3]] + [0.1]
+            rows: 1
+            size_hint_y: None
+            padding: '10dp'
+            height: self.minimum_height
+
+            BackButton:
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(5), dp(5)
+
+            RecycleView:
+                id: rv
+                data: root.messages
+                viewclass: 'Message'
+                do_scroll_x: False
+                effect_cls : 'ScrollEffect'
+
+                # canvas.before:
+                #     Color:
+                #         rgba: 0.5, 0.5, 0.2, 0.5
+                #     RoundedRectangle:
+                #         size: self.size
+                #         pos: self.pos
+
+                RecycleBoxLayout:
+                    id: box
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    size: self.minimum_size
+                    default_size_hint: 1, None
+                    default_size: 0, 38
+                    key_size: '_size'
+                    spacing: '10dp'
+
+                    # canvas.before:
+                    #     Color:
+                    #         rgba: 0.2, 0.5, 0.7, 0.5
+                    #     RoundedRectangle:
+                    #         size: self.size
+                    #         pos: self.pos
+
+        FloatLayout:
+            size_hint_y: None
+            height: 0
+
+            MDIconButton:
+                icon: "chevron-down"
+                md_bg_color: [1-x for x in app.bg_color[:3]] + [0.1]
+                opacity: 0 if not self.user_font_size else 1
+                user_font_size: "32dp" if rv.height < box.height and rv.scroll_y > 0 else '0sp'
+                pos: (self.parent.width-self.width-dp(10), send_message_box.height+dp(10))
+                theme_text_color: "Custom"
+                text_color: app.text_color
+                on_release: root.scroll_bottom()
+
+        MDGridLayout:
+            id: send_message_box
+            md_bg_color: [1-x for x in app.bg_color[:3]] + [0.1]
+            rows: 1
+            size_hint_y: None
+            padding: dp(10)
+            spacing: '5dp'
+            size: self.minimum_size
+
+            ScrollView:
+                id: scroller
+                size_hint_y: None
+                height: min(text_box.height, Window.height/3)
+                effect_cls : 'ScrollEffect'
+                smooth_scroll_end: 5
+
+                MDTextField:
+                    id: text_box
+                    hint_text: 'Write a message...'
+                    multiline: True
+                    on_text:
+                        rv.scroll_y = 0 if int(rv.scroll_y) == 1 and rv.height < box.height else rv.scroll_y
+
+            MDIconButton:
+                id: send_btn
+                icon: 'send'
+                on_release:
+                    root.send_message(text_box)
+
+
+<BackButton>:
+    size_hint: None, None
+    height: label.height
+    width: icon.width + label.width
+    on_release:
+        app.switch_screen('home')
+
+    MDIcon:
+        id: icon
+        icon: "chevron-left"
+        size_hint: None, None
+        size: self.texture_size
+
+    Label:
+        id: label
+        size_hint: None, None
+        halign: 'left'
+        height: icon.height
+        width: self.texture_size[0]
+        text: "home"
+        color: app.text_color
+
+
+<Message@FloatLayout>:
+    message_id: -1
+    bg_color: 0.133, 0.2, 0.266, 1
+    side: 'left'
+    text: ''
+    size_hint_y: None
+    _size: 0, 0
+    size: self._size
+    text_size: None, None
+    opacity: min(1, self._size[0])
+    texture_size: label.texture_size
+
+    Label:
+        id: label
+        text: root.text
+        padding: 10, 10
+        size_hint: None, 1
+        size: self.texture_size
+        text_size: root.text_size
+        color: app.text_color
+        on_texture_size:
+            app.chat.update_message_size(
+            root.message_id,
+            self.texture_size,
+            )
+        pos_hint:
+            (
+            {'x': 0, 'center_y': .5}
+            if root.side == 'left' else
+            {'right': 1, 'center_y': .5}
+            )
+        canvas.before:
+            Color:
+                rgba: root.bg_color
+            RoundedRectangle:
+                size: self.texture_size
+                radius: dp(5), dp(5), dp(5), dp(5)
+                pos: self.pos
+        canvas.after:
+            Color:
+            Line:
+                rounded_rectangle: self.pos + self.texture_size + [dp(5)]
+                width: 1.01

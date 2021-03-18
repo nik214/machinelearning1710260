@@ -1,0 +1,59 @@
+{"intents": [
+
+  {
+  "tag": "greetings",
+  "patterns":["hello", "hey", "hi", "good day", "what's up"],
+  "response":["hey i am Bitbot cryptoccurency chatbot for more type info"]
+},
+
+{
+  "tag": "goodbye",
+  "patterns":["bye", "see you later", "cao", "see ya", "bb"],
+  "response":["Bye hope i help you see you soon"]
+},
+{
+  "tag": "information",
+  "patterns":["info", "information", "more", "show me information"],
+  "response":["Bitbot can answer question like:\n\" \" - what is bitcoin price? for cryptocurrency price \\n\" \" - what is bitcoin? for theritical aspect \\n\" \" - website. for open website of cryptoccurency trading \\n\" \" - what is the change of percentage for bitcoin for 1 hour? for getting the percentage of changing in hour \\n\" \" - what is the change of percentage for bitcoin for 24 hours?  for getting the percentage of changing for 24hours \\n\" \" - what is the change of percentage for bitcoin for one month? for getting the percentage of changing for one month \\n"]
+},
+{
+  "tag": "theoretical-btc",
+  "patterns":["what is bitcoin?", "what is bitcoin", "what is btc?"],
+  "response":["Bitcoin is a cryptocurrency invented in 2008 by an unknown person or group of people using the name Satoshi Nakamoto. The currency began use in 2009 when its implementation was released as open-source software."]
+},
+{
+  "tag": "theoretical-eth",
+  "patterns":["what is ethereum?", "what is ethereum" , "what is eth?"],
+  "response":["Ethereum is a decentralized, open-source blockchain featuring smart contract functionality. Ether is the native cryptocurrency of the platform. It is the second-largest cryptocurrency by market capitalization, after Bitcoin. Ethereum is the most actively used blockchain"]
+},
+  {
+  "tag": "theoretical-ltc",
+  "patterns":["what is litecoin?", "what is litecoin" , "what is ltc?"],
+  "response":["Litecoin is a peer-to-peer cryptocurrency and open-source software project released under the MIT/X11 license. Litecoin was an early bitcoin spinoff or altcoin, starting in October 2011. In technical details, Litecoin is nearly identical to Bitcoin."]
+},
+ {
+  "tag": "theoretical-xpr",
+  "patterns":["what is xpr?", "what is xpr" , "what is xpr?"],
+  "response":["XPR is often referred to as 'real cryptocurrency'; it is a token that uses Ripple network to enable money transfers between various currencies. Most clearing systems nowadays use US dollars as a base currency for conversion."]
+},
+  {
+  "tag": "theoretical-btc-creator",
+  "patterns":["Satoshi Nakamoto", "Satoshi" , "bitcoin creator","who create bitcoin?"],
+  "response":["Satoshi Nakamoto is the name used by the presumed pseudonymous person or persons who developed bitcoin, authored the bitcoin white paper, and created and deployed bitcoin's original reference implementation. As part of the implementation, Nakamoto also devised the first blockchain database.In the process, Nakamoto was the first to solve the double-spending problem for digital currency using a peer-to-peer network. Nakamoto was active in the development of bitcoin up until December 2010.Many people have claimed, or have been claimed, to be Nakamoto."]
+},
+   {
+  "tag": "theoretical-eth-creator",
+  "patterns":["Gavin Wood", "Gavin" , "ethereum creator","who create ethereum?"],
+  "response":["Satoshi Nakamoto is the name used by the presumed pseudonymous person or persons who developed bitcoin, authored the bitcoin white paper, and created and deployed bitcoin's original reference implementation. As part of the implementation, Nakamoto also devised the first blockchain database.In the process, Nakamoto was the first to solve the double-spending problem for digital currency using a peer-to-peer network. Nakamoto was active in the development of bitcoin up until December 2010.Many people have claimed, or have been claimed, to be Nakamoto."]
+},
+   {
+  "tag": "theoretical-ltc-creator",
+  "patterns":["Charlie Lee", "Charlie" , "litecoin creator","who create litecoin?"],
+  "response":["Charles Lee is a computer scientist, best known as the creator of Litecoin. He serves as the managing director of the Litecoin Foundation.As of July 2013, he also worked for Coinbase."]
+},
+  {
+  "tag": "theoretical-xpr-creator",
+  "patterns":["Jed McCaleb", "Jed" , "xpr creator","who create xpr?"],
+  "response":["Jed McCaleb is an American programmer and entrepreneur. He is a co-founder and the CTO of Stellar.Prior to co-founding Stellar, McCaleb founded and served as the CTO of the company Ripple until 2013. McCaleb is also known for creating Mt. Gox, and the peer-to-peer eDonkey and Overnet networks as well as the eDonkey2000 application."]
+}
+]}

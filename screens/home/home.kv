@@ -1,0 +1,42 @@
+#:import Window kivy.core.window.Window
+
+
+<Home>:
+    name: 'home'
+
+    MDGridLayout:
+        cols: 1
+        md_bg_color: app.bg_color
+
+        AnchorLayout:
+            size_hint_y: None
+            anchor_x: 'right'
+            padding: 0, dp(20), dp(20), 0
+            height: theme_grid.height
+
+            FloatLayout:
+                id: theme_grid
+                rows: 1
+                size_hint: None, None
+                height: theme_switch.height
+                width: theme_switch.width + theme_icon.width + dp(20)
+
+                MDIcon:
+                    id: theme_icon
+                    icon: "theme-light-dark"
+                    size_hint: None, None
+                    size: self.texture_size
+                    pos_hint: {'center_x': 0.25, 'center_y': .5}
+
+                MDSwitch:
+                    id: theme_switch
+                    pos_hint: {'center_x': 0.75, 'center_y': .5}
+                    on_active:
+                        root.change_theme(self)
+
+        AnchorLayout:
+
+            MDRaisedButton:
+                text: "Chat with the bot"
+                on_release:
+                    app.switch_screen("chat")
